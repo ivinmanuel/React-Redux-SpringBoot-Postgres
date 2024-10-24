@@ -63,12 +63,12 @@
 
 ## 🔧 Connecting Frontend and Backend
 
-Make sure the frontend is configured to make API requests to the backend running at `http://localhost:8080`. You can configure this in the frontend by updating the base URL used in API requests.
+Make sure the frontend is configured to make API requests to the backend running at `http://localhost:8081`. You can configure this in the frontend by updating the base URL used in API requests.
 
 **Example (using Axios):**
 
 ```javascript
-baseURL = 'http://localhost:8080';
+baseURL = 'http://localhost:8081';
 ```
 
 
