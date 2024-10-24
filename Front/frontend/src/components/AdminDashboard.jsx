@@ -222,7 +222,7 @@ const filteredUsers = users.filter(user =>
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ my: 4 }}>
+      <Box sx={{ my: 4, height: 'calc(100vh - 150px)', display: 'flex', flexDirection: 'column' }}>
         <Typography variant="h4" component="h1" gutterBottom>
           Admin Dashboard
         </Typography>
@@ -272,8 +272,27 @@ const filteredUsers = users.filter(user =>
             <CircularProgress />
           </Box>
         ) : (
-          <TableContainer component={Paper}>
-            <Table>
+          <TableContainer 
+            component={Paper} 
+            sx={{
+              flexGrow: 1,
+              overflow: 'auto',
+              '& .MuiTable-root': {
+                borderCollapse: 'separate',
+                borderSpacing: 0,
+              },
+              '& .MuiTableHead-root': {
+                position: 'sticky',
+                top: 0,
+                zIndex: 1,
+                backgroundColor: 'background.paper',
+              },
+              '& .MuiTableHead-root .MuiTableCell-root': {
+                borderBottom: '2px solid rgba(224, 224, 224, 1)',
+              }
+            }}
+          >
+            <Table stickyHeader>
               <TableHead>
                 <TableRow>
                   <TableCell>ID</TableCell>
@@ -285,25 +304,25 @@ const filteredUsers = users.filter(user =>
                 </TableRow>
               </TableHead>
               <TableBody>
-  {filteredUsers && filteredUsers.length > 0 ? (
-    filteredUsers.map((user) => (
-      <TableRow key={generateUniqueKey(user)}>
-        <TableCell>{user.id}</TableCell>
-        <TableCell>{user.username}</TableCell>
-        <TableCell>
-          {user.firstName && user.lastName
-            ? `${user.firstName} ${user.lastName}`
-            : "Name not available"}
-        </TableCell>
-        <TableCell>{user.email}</TableCell>
-        <TableCell>{user.phoneNumber || "Phone not available"}</TableCell>
-        <TableCell>
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button 
-              onClick={() => handleEdit(user)}
-              variant="outlined"
-              size="small"
-            >
+                {filteredUsers && filteredUsers.length > 0 ? (
+                  filteredUsers.map((user) => (
+                    <TableRow key={generateUniqueKey(user)}>
+                      <TableCell>{user.id}</TableCell>
+                      <TableCell>{user.username}</TableCell>
+                      <TableCell>
+                        {user.firstName && user.lastName
+                          ? `${user.firstName} ${user.lastName}`
+                          : "Name not available"}
+                      </TableCell>
+                      <TableCell>{user.email}</TableCell>
+                      <TableCell>{user.phoneNumber || "Phone not available"}</TableCell>
+                      <TableCell>
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                          <Button 
+                            onClick={() => handleEdit(user)}
+                            variant="outlined"
+                            size="small"
+                          >
               Edit
             </Button>
             <Button 
