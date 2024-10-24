@@ -79,11 +79,11 @@ export const {
 export const initializeAuth = () => (dispatch) => {
   const token = localStorage.getItem('token');
   if (token) {
-    // You could potentially make an API call here to validate the token
+    // could potentially make an API call here to validate the token
     // and get fresh user data if needed
     dispatch(setAuthLoading(true));
     try {
-      // Add your token validation logic here if needed
+      // Add token validation logic here if needed
       dispatch(setAuthLoading(false));
     } catch (error) {
       dispatch(logout());
