@@ -29,7 +29,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('An unexpected error occurred. Please try again.');
     if (!validateForm()) return;
 
     setIsLoading(true);
